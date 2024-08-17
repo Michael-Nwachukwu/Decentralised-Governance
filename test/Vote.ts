@@ -10,13 +10,12 @@ describe('Voting', function () {
 
         const Voting = await hre.ethers.getContractFactory("Governance");
         const castVote = await Voting.deploy(options);
-        // await castVote.deployed();  // Ensure the contract is deployed
 
         // Owner votes for Option1
         await castVote.connect(owner).vote("Option1");
 
         // Verify that Option1's vote count is now 1
-        const voteCount = await castVote.getVotes("Option1");
+        const voteCount = await castVote.getVotes(options[0]);
         expect(voteCount).to.equal(1);
     });
 });
