@@ -1,11 +1,14 @@
 import { ethers } from 'hardhat';
 
 async function main() {
-  const nft = await ethers.deployContract('NFT');
 
-  await nft.waitForDeployment();
+    const options = ["Option1", "Option2", "Option3"];
 
-  console.log('NFT Contract Deployed at ' + nft.target);
+    const governance = await ethers.deployContract('Governance', [options]);
+
+    await governance.waitForDeployment();
+
+    console.log('Governance Contract Deployed at ' + governance.target);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

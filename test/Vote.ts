@@ -8,7 +8,7 @@ describe('Voting', function () {
         // Deploy the contract with initial options
         const options = ["Option1", "Option2", "Option3"];
 
-        const Voting = await hre.ethers.getContractFactory("Voting");
+        const Voting = await hre.ethers.getContractFactory("Governance");
         const castVote = await Voting.deploy(options);
         // await castVote.deployed();  // Ensure the contract is deployed
 
