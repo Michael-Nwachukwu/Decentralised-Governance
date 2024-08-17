@@ -4,7 +4,7 @@ async function main() {
 
     const options = ["Option1", "Option2", "Option3"];
 
-    const governance = await ethers.deployContract('Governance', [options]);
+    const governance = await ethers.deployContract('Governance', options);
 
     await governance.waitForDeployment();
 
