@@ -2,9 +2,6 @@
 pragma solidity 0.8.24;
 // pragma solidity >=0.7.0 <0.9.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-
-
 contract Governance {
 
     address public owner;
@@ -21,6 +18,13 @@ contract Governance {
     // constructor function to initialize the voting options
     constructor(string[] memory _options) {
         options = _options;
+        owner = msg.sender; 
+    }
+
+    // this modifies who sends a message. in this case the sender must be the owner.
+    modifier onlyOwner() {
+        require(msg.sender == owner, 'You are not the owner');
+        _;
     }
 
     /**
@@ -32,9 +36,7 @@ contract Governance {
      * mark user as voted
     */
 
-    function vote(string memory _option) public {
-
-        // require(msg.sender == owner, "You aren't the owner");
+    function vote(string memory _option) public onlyOwner {
 
         // Check if the sender has already voted
         require(!hasVoted[msg.sender], "You have already voted.");
